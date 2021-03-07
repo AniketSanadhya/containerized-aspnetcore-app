@@ -19,7 +19,7 @@
     },
     "DemoApp": {
       "commandName": "Project",
-      "launchUrl": "api/Home",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
