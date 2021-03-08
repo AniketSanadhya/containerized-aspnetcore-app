@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DemoApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DemoApp
 {
@@ -33,6 +35,9 @@ namespace DemoApp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoApp", Version = "v1" });
             });
+            services.AddDbContext<DemoAppDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
