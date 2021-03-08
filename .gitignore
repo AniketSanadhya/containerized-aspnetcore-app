@@ -440,3 +440,14 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+DemoApp/.vscode/launch.json
+DemoApp/.vscode/tasks.json
+DemoApp/bin/Debug/net5.0/DemoApp.dll
+DemoApp/bin/Debug/net5.0/DemoApp.pdb
+DemoApp/bin/Debug/net5.0/ref/DemoApp.dll
+DemoApp/obj/Debug/net5.0/DemoApp.csproj.CoreCompileInputs.cache
+DemoApp/obj/Debug/net5.0/DemoApp.csprojAssemblyReference.cache
+DemoApp/obj/Debug/net5.0/DemoApp.dll
+DemoApp/obj/Debug/net5.0/DemoApp.pdb
+DemoApp/obj/Debug/net5.0/ref/DemoApp.dll
+.vs/ContainerizedAspNetCoreApp/v16/.suo
