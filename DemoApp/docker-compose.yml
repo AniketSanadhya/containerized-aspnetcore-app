@@ -11,3 +11,5 @@ services:
     image: aspnetcore/demoapp
     ports: 
       - "8080:80"
+    depends_on: 
+      - ms-sql-server

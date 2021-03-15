@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DemoApp.Data;
 using Microsoft.EntityFrameworkCore;
+using DemoApp.Domain;
 
 namespace DemoApp
 {
@@ -35,8 +36,16 @@ namespace DemoApp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoApp", Version = "v1" });
             });
+
+            var server = Configuration["DBServer"] ?? "ms-sql-server";
+            var port = Configuration["DBPort"] ?? "1433";
+            var user = Configuration["DBUser"] ?? "SA";
+            var password = Configuration["DBPassword"] ?? "1StrongPwd!!";
+            var database = Configuration["DBName"] ?? "DemoApp";
+
+
             services.AddDbContext<DemoAppDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                options.UseSqlServer($"Server={server},{port};Initial Catalog={database};User ID={user};Password={password}")
             );
         }
 
@@ -64,6 +73,38 @@ namespace DemoApp
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
+            PopulateDB(app);
+        }
+
+        private static void PopulateDB(IApplicationBuilder app)
+        {
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                SeedData(scope.ServiceProvider.GetService<DemoAppDbContext>());
+            }
+        }
+
+        private static void SeedData(DemoAppDbContext demoAppDbContext)
+        {
+            Console.WriteLine("Applying Migrations.......");
+            demoAppDbContext.Database.Migrate();
+            if (!demoAppDbContext.Cars.Any())
+            {
+                Console.WriteLine("Seeding data");
+                demoAppDbContext.Cars.Add(new Car()
+                {
+                    Make = "Honda",
+                    Model = "City",
+                    Price = 1100000
+
+                });
+                demoAppDbContext.SaveChanges();
+                Console.WriteLine("Seeding Completed");
+            }
+            else
+            {
+                Console.WriteLine("No need for Migration");
+            }
         }
     }
 }
