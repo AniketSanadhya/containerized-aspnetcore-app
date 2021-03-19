@@ -8,7 +8,7 @@ services:
     ports:
       - "1433:1433"
   api:
-    image: aspnetcore/demoapp
+    image: testanddemoregistry.azurecr.io/aspnetcore/demoapp
     ports: 
       - "8080:80"
     depends_on: 
