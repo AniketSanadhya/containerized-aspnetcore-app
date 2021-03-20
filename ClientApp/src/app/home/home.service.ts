@@ -9,7 +9,7 @@ export class HomeService {
   constructor(public http: HttpClient) { }
 
   getCars(){
-    return this.http.get('https://demoaspnetcorecontainer.azurewebsites.net//api/cars');
+    return this.http.get('cars');
     
   }
 
