@@ -1,3 +1,4 @@
+import { HomeService } from './home/home.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,8 +9,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ClientApp';
 
-  constructor(){
+  constructor(public homeService: HomeService){
+    this.getCars();
   }
 
+  getCars(){
+    this.homeService.getCars().subscribe(response=>{
+      console.log('response: ',response);
+      
+    })
+  }
 
 }
