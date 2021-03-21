@@ -47,6 +47,19 @@ namespace DemoApp
             services.AddDbContext<DemoAppDbContext>(options =>
                 options.UseSqlServer($"Server={server},{port};Initial Catalog={database};User ID={user};Password={password}")
             );
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "Dev",
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:4200")
+                                            .AllowAnyMethod()
+                                            .AllowAnyHeader()
+                                            .AllowCredentials();
+                                  });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +71,8 @@ namespace DemoApp
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DemoApp v1"));
             }
+
+            app.UseCors("Dev");
 
             app.UseHttpsRedirection();
 

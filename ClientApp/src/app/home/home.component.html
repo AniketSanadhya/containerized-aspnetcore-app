@@ -1,1 +1,28 @@
-<p>home works!</p>
+<div class="container-fluid pt-4">
+
+    <div class="pb-4">
+        <button class="btn btn-primary" [routerLink]="['/add']">Add Car</button>
+    </div>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cars">
+                <td>{{item.make}}</td>
+                <td>{{item.model}}</td>
+                <td>{{item.price | currency:'INR'}}</td>
+                <td>
+                    <button class="btn btn-outline-dark" [routerLink]="['/edit',item.id]">Edit</button>
+                    <button class="btn btn-outline-danger ml-4" (click)="onDelete(item.id)" >Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
