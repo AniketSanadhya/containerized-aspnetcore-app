@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  // url: 'https://demoaspnetcorecontainer.azurewebsites.net/api/',
   url: 'http://localhost:8080/api/'
 };
 
