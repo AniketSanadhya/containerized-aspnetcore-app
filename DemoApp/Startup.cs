@@ -81,13 +81,17 @@ namespace DemoApp
 
             app.UseHttpsRedirection();
 
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles();
+          
+            app.UseSpaStaticFiles();
+            
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseStaticFiles();
 
-            app.UseSpaStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
