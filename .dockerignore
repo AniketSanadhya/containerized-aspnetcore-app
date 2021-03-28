@@ -1,0 +1,5 @@
+./DemoApp/bin
+./DemoApp/obj
+./ClientApp/node_modules
+dockerfile
+.dockerignore
