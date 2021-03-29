@@ -7,9 +7,17 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "1433:1433"
+    networks: 
+      - app-network
   api:
-    image: testanddemoregistry.azurecr.io/aspnetcore/demoapp
+    image: testanddemoregistry.azurecr.io/aspnetcore/democarapp
     ports: 
       - "8080:80"
     depends_on: 
       - ms-sql-server
+    networks: 
+    - app-network
+
+networks: 
+  app-network:
+    driver: bridge

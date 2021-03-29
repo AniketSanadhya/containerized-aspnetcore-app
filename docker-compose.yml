@@ -1,5 +1,11 @@
 version:  '3.2'
 services:
+  api:
+    image: testanddemoregistry.azurecr.io/aspnetcore/demoapp
+    ports: 
+      - "8080:80"
+    depends_on: 
+      - ms-sql-server
   ms-sql-server:
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
@@ -7,9 +13,3 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "1433:1433"
-  api:
-    image: testanddemoregistry.azurecr.io/aspnetcore/demoapp
-    ports: 
-      - "8080:80"
-    depends_on: 
-      - ms-sql-server
