@@ -37,7 +37,7 @@ namespace DemoApp
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoApp", Version = "v1" });
             });
 
-            var server = Configuration["DBServer"] ?? "ms-sql-server";
+            var server = Configuration["DBServer"] ?? "ms-sql-server,1433";
             var port = Configuration["DBPort"] ?? "1433";
             var user = Configuration["DBUser"] ?? "SA";
             var password = Configuration["DBPassword"] ?? "1StrongPwd!!";
